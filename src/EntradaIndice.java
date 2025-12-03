@@ -1,7 +1,7 @@
 public class EntradaIndice {
 
     private String palavra;
-    private ListaDuplamenteEncadeada linhas; // guarda os números de linha como String
+    private ListaDuplamenteEncadeada linhas;
 
     public EntradaIndice(String palavra) {
         this.palavra = palavra;
@@ -18,7 +18,7 @@ public class EntradaIndice {
 
     public void adicionarLinha(int numeroLinha) {
         String s = String.valueOf(numeroLinha);
-        // evita registrar a mesma linha mais de uma vez
+
         if (!linhas.contem(s)) {
             linhas.insereFinal(s);
         }

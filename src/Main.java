@@ -33,7 +33,7 @@ public class Main {
         }
     }
 
-    // Lê o arquivo de palavras-chave e preenche a hash (ABB por letra)
+
     private static void carregarPalavrasChave(String caminho,
                                               HashColisaoExterior hash) throws IOException {
 
@@ -44,15 +44,13 @@ public class Main {
                 linha = linha.trim().toLowerCase();
                 if (linha.isEmpty()) continue;
 
-                // aqui eu QUEBRO a linha em várias palavras
-                // separando por qualquer coisa que não seja letra, número ou hífen
+
                 String[] tokens = linha.split("[^A-Za-z0-9áéíóúàèìòùãõâêîôûçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÇ-]+");
 
                 for (String token : tokens) {
                     String palavra = token.trim();
                     if (palavra.isEmpty()) continue;
 
-                    // cada palavra vai pra hash (que joga na ABB da letra correspondente)
                     hash.insere(palavra);
                 }
             }
@@ -60,7 +58,7 @@ public class Main {
     }
 
 
-    // Lê o texto linha a linha e marca em quais linhas cada palavra-chave aparece
+
     private static void processarTexto(String caminho,
                                        HashColisaoExterior hash) throws IOException {
 
@@ -70,7 +68,6 @@ public class Main {
 
             while ((linha = br.readLine()) != null) {
 
-                // separa por não-letras/números (pode ajustar depois)
                 String[] tokens = linha.split("[^A-Za-z0-9áéíóúàèìòùãõâêîôûçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÇ-]+");
 
 
@@ -78,7 +75,6 @@ public class Main {
                     String palavra = token.trim().toLowerCase();
                     if (palavra.isEmpty()) continue;
 
-                    // busca direto na hash (que já sabe qual ABB olhar)
                     EntradaIndice entrada = hash.buscar(palavra);
                     if (entrada != null) {
                         entrada.adicionarLinha(numeroLinha);

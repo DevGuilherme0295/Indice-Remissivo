@@ -56,13 +56,12 @@ public class ArvoreBinariaBusca {
         } else if (ordem > 0) {
             nodo.direito = insereRec(entrada, nodo.direito);
         } else {
-            // mesma palavra: não insere outra vez, quem muda é a lista de linhas
+
         }
 
         return nodo;
     }
 
-    // -------- BUSCA POR PALAVRA --------
 
     public EntradaIndice busca(String palavra) {
         return buscaRec(palavra, this.raiz);
@@ -85,13 +84,12 @@ public class ArvoreBinariaBusca {
         }
     }
 
-    // -------- IMPRESSÃO EM ORDEM (ÍNDICE REMISSIVO) --------
 
     public void imprimeIndice() {
         imprimeIndiceRec(this.raiz);
     }
 
-    // Versão que escreve o índice em um arquivo (uma linha por palavra)
+
     public void escreveIndice(BufferedWriter bw) throws IOException {
         escreveIndiceRec(this.raiz, bw);
     }
@@ -101,16 +99,16 @@ public class ArvoreBinariaBusca {
 
         escreveIndiceRec(nodo.esquerdo, bw);
 
-        // palavra
+
         bw.write(nodo.elemento.getPalavra());
 
-        // se tiver linhas, escreve espaço + lista de linhas
+
         if (nodo.elemento.getLinhas().tamanho() > 0) {
             bw.write(" ");
             nodo.elemento.getLinhas().escreveSemColchetes(bw);
         }
 
-        bw.newLine(); // quebra de linha para a próxima palavra
+        bw.newLine();
 
         escreveIndiceRec(nodo.direito, bw);
     }
@@ -129,7 +127,7 @@ public class ArvoreBinariaBusca {
     }
 
 
-    // se quiser só ver as palavras em ordem (debug)
+
     public void imprimeEmOrdem() {
         emOrdem(this.raiz);
         System.out.println();
