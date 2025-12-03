@@ -49,11 +49,11 @@ public class ArvoreBinariaBusca {
         String nova = entrada.getPalavra();
         String atual = nodo.elemento.getPalavra();
 
-        int cmp = nova.compareToIgnoreCase(atual);
+        int ordem = nova.compareToIgnoreCase(atual);
 
-        if (cmp < 0) {
+        if (ordem < 0) {
             nodo.esquerdo = insereRec(entrada, nodo.esquerdo);
-        } else if (cmp > 0) {
+        } else if (ordem > 0) {
             nodo.direito = insereRec(entrada, nodo.direito);
         } else {
             // mesma palavra: não insere outra vez, quem muda é a lista de linhas
