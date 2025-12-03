@@ -1,3 +1,7 @@
+import java.io.BufferedWriter;
+import java.io.IOException;
+
+
 public class ArvoreBinariaBusca {
 
     class Nodo {
@@ -86,6 +90,31 @@ public class ArvoreBinariaBusca {
     public void imprimeIndice() {
         imprimeIndiceRec(this.raiz);
     }
+
+    // Versão que escreve o índice em um arquivo (uma linha por palavra)
+    public void escreveIndice(BufferedWriter bw) throws IOException {
+        escreveIndiceRec(this.raiz, bw);
+    }
+
+    private void escreveIndiceRec(Nodo nodo, BufferedWriter bw) throws IOException {
+        if (nodo == null) return;
+
+        escreveIndiceRec(nodo.esquerdo, bw);
+
+        // palavra
+        bw.write(nodo.elemento.getPalavra());
+
+        // se tiver linhas, escreve espaço + lista de linhas
+        if (nodo.elemento.getLinhas().tamanho() > 0) {
+            bw.write(" ");
+            nodo.elemento.getLinhas().escreveSemColchetes(bw);
+        }
+
+        bw.newLine(); // quebra de linha para a próxima palavra
+
+        escreveIndiceRec(nodo.direito, bw);
+    }
+
 
     private void imprimeIndiceRec(Nodo nodo) {
         if (nodo == null) return;

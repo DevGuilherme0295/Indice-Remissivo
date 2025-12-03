@@ -1,3 +1,7 @@
+import java.io.BufferedWriter;
+import java.io.IOException;
+
+
 public class HashColisaoExterior {
 
     public ArvoreBinariaBusca vetor[];
@@ -65,5 +69,15 @@ public class HashColisaoExterior {
             }
         }
     }
+
+    // Escreve o índice remissivo completo em um arquivo
+    public void escreveIndice(BufferedWriter bw) throws IOException {
+        for (int i = 0; i < vetor.length; i++) {
+            if (!vetor[i].estaVazia()) {
+                vetor[i].escreveIndice(bw);
+            }
+        }
+    }
+
 
 }

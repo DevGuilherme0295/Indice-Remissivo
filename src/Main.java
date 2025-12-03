@@ -1,6 +1,9 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
 
 public class Main {
 
@@ -9,7 +12,6 @@ public class Main {
         String caminhoPalavras = "arquivos/palavras.txt";
         String caminhoTexto    = "arquivos/texto.txt";
 
-        // 26 buckets = letras de 'a' a 'z'
         HashColisaoExterior hash = new HashColisaoExterior(26);
 
         try {
@@ -19,8 +21,15 @@ public class Main {
             System.out.println("ÍNDICE REMISSIVO:");
             hash.imprimeIndice();
 
+            // >>> gravação em arquivo
+            String caminhoSaida = "arquivos/indice.txt";
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(caminhoSaida))) {
+                hash.escreveIndice(bw);
+            }
+            System.out.println("Arquivo gerado em: " + caminhoSaida);
+
         } catch (IOException e) {
-            System.out.println("Erro de leitura: " + e.getMessage());
+            System.out.println("Erro de leitura/escrita: " + e.getMessage());
         }
     }
 

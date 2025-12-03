@@ -1,3 +1,7 @@
+import java.io.BufferedWriter;
+import java.io.IOException;
+
+
 public class ListaDuplamenteEncadeada {
 
     class Nodo {
@@ -44,7 +48,7 @@ public class ListaDuplamenteEncadeada {
     public void imprimeSemColchetes() {
         Nodo cursor = this.inicio;
         for (int i = 0; i < this.nElementos; i++) {
-            System.out.print(cursor.elemento);
+            System.out.print(cursor.elemento);          //Alterado para imprimir igual a saída do projeto
             if (i < this.nElementos - 1) {
                 System.out.print(" ");
             }
@@ -167,5 +171,18 @@ public class ListaDuplamenteEncadeada {
 
         return false;
     }
+
+    // Escreve os elementos em uma linha, separados por espaço, sem colchetes
+    public void escreveSemColchetes(BufferedWriter bw) throws IOException {
+        Nodo cursor = this.inicio;
+        for (int i = 0; i < this.nElementos; i++) {
+            bw.write(cursor.elemento);
+            if (i < this.nElementos - 1) {
+                bw.write(" ");
+            }
+            cursor = cursor.proximo;
+        }
+    }
+
 
 }
